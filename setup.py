@@ -30,9 +30,15 @@ setup(
     ],
     keywords='cfdi mexico invoice einvoice',
     packages=find_packages(),
-    install_requires=['Jinja2'],
+    install_requires=[
+        'lxml',
+        'Jinja2',
+        ],
     test_suite="cfdi.test",
     package_data={
-        'cfdi': ['data/*.jinja'],
+        'cfdi': [
+            'data/*.jinja',
+            'data/*.xslt',
+            ],
     },
 )
