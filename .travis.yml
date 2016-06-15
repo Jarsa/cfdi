@@ -1,0 +1,27 @@
+language: python
+sudo: false
+
+cache:
+    apt: true
+    directories:
+    - "$HOME/.cache/pip"
+
+python:
+    - '2.7'
+
+install:
+    - pip install . coveralls flake8
+
+script:
+    - flake8 .
+    - coverage run setup.py test
+
+after_success: coveralls
+
+deploy:
+    provider: pypi
+    user: jarsa
+    password:
+        secure: HwY3g+OuzoLDDXQ7RMYyh5RTBQAei8v61bqgtkB6HVrygq3mbsjb1P3t257dI40OqnzWHvsSqqx6bnHlWXIGcmYF2cQl2SmQg3Qsr9T2vkmk1z+UySg+n4uP6qFD+XHwdQMnLoYCBjSQF1++AwN7pWEpXGF7f+RlV7+VRKn+PN9iOimR4p9K5kt+GQxIyoLcXAtfHJsucKzVDh06PujU6Y8ezYkL8IMRsgXm22bVl4y/USkIkRmg/uTfGxh2hcaaSxDjPj7Y/klS1ftZXh35wzoJ/2oh/j4dxpNNMHDPDJOaI71fCbAmSho5us56XRVHfuSFoESGVtE92mOrJSx+O5CWUUQFecW5Cr7q2dpHwRUKGbCCOQOuTv+9pvKCtq2//w3tIskgf+5BBiLeWtarJhTXZrkCRhJrim7XhOoFQP18FAANeq0avEYJISr2zOO34BJeGtpq4nX/Sg4gCzF2B39dyAJ8J3DiYVP0of5Dj0XGA2C0SRhgKHsK65oZ6XvOS6SARLvDNUGLyHILbMW38T2MCkVtm9iH5UVPArSYV4ISaCGXh+Hekw9yBzv/8H691qUC2eueVO49tMGDxv/BOAWXhFofe7xP13fipjTF1+A8Mc0Y8OUdPryIRgsXEwtlQ83ed/gZqPVbST0/mNQZgc2EEbnEVMB75dQ++scHgNA=
+    on:
+        repo: Jarsa/cfdi
