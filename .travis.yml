@@ -1,5 +1,5 @@
 language: python
-sudo: false
+sudo: true
 
 cache:
     apt: true
@@ -12,15 +12,14 @@ python:
 addons:
     apt:
         packages:
-        - python-lxml
         - swig
 
 install:
-    - pip install . coveralls flake8 nose
+    - pip install . coveralls flake8
 
 script:
     - flake8 .
-    - python setup.py install
+    - coverage run setup.py test
 
 after_success: coveralls
 
