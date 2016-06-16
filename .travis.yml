@@ -9,12 +9,17 @@ cache:
 python:
     - '2.7'
 
+addons:
+    apt:
+        packages:
+        - python-lxml
+
 install:
     - pip install . coveralls flake8
 
 script:
     - flake8 .
-    - coverage run setup.py test
+    - python setup.py install
 
 after_success: coveralls
 
