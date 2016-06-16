@@ -59,7 +59,10 @@ class invoice(object):
     def get_noCertificado(cls):
         cert = X509.load_cert_string(
             base64.decodestring(cer), X509.FORMAT_DER)
-        return str(u'{0:0>40x}'.format(cert.get_serial_number()))
+        serial = str(u'{0:0>40x}'.format(cert.get_serial_number()))
+        return serial.replace('33', 'B').replace('3', '').replace(
+            'B', '3').replace(' ', '').replace('\r', '').replace(
+            '\n', '').replace('\r\n', '')
 
     @classmethod
     def get_sello(cls):
