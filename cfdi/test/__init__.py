@@ -79,5 +79,4 @@ class MainTest(unittest.TestCase):
 
     def test_10_generate_xml(self):
         '''Generate xml first time'''
-        invoice = cfdi.invoice()
-        invoice.create(self.data)
+        cfdi.invoice.create(self.data)

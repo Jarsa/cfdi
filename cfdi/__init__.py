@@ -9,17 +9,19 @@ import lxml.etree as ET
 
 class invoice(object):
 
-    def create(self, data):
+    @classmethod
+    def create(cls, data):
         jinja_file = pkg_resources.resource_filename('cfdi', 'data/cfdi.jinja')
         with open(jinja_file, 'r') as template:
             jinja_tmpl_str = template.read().encode('utf-8')
             tmpl = Template(jinja_tmpl_str)
             xml = tmpl.render(data=data).encode('utf-8')
-            cadena_original = self.generate_cadena_original(xml)
+            cadena_original = cls.generate_cadena_original(xml)
             data['cadena_original'] = cadena_original
             return xml
 
-    def generate_cadena_original(self, xml):
+    @classmethod
+    def generate_cadena_original(cls, xml):
         xlst = pkg_resources.resource_filename(
             'cfdi', 'data/cadenaoriginal_3_2.xslt')
         dom = ET.fromstring(xml)

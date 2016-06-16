@@ -48,8 +48,7 @@ To generate XML you only need to call create method.
 .. code-block:: python
 
     import cfdi
-    invoice = cfdi.invoice()
-    xml = invoice.create(data)
+    invoice = cfdi.invoice.create(data)
 
 First you need to make a dictionary with invoice data like this:
 
