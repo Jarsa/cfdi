@@ -10,6 +10,7 @@ from M2Crypto import X509, RSA
 import base64
 import tempfile
 import hashlib
+from . import pac
 
 cer = ''  # CSD .cer in base64
 key = ''  # CSD .key in base64
@@ -31,6 +32,7 @@ class invoice(object):
         xml_obj = ET.fromstring(cls.xml)
         xml_obj.attrib['sello'] = cls.sello
         cls.sign_xml = ET.tostring(xml_obj)
+        cls.pac_response = pac.drivers.stamp_pac(cls.sign_xml)
         return cls
 
     @classmethod
