@@ -43,6 +43,19 @@ From remote source
 How to use it?
 --------------
 
+Configure PAC options
+
+.. code-block:: python
+
+    import cfdi
+
+    cfdi.pac.name.pac = 'comercio_digital'  # PAC Driver name
+    cfdi.pac.usr = 'AAA010101AAA'
+    cfdi.pac.pwd = 'PWD'
+    cfdi.pac.mode = 'test'  # test/production
+
+This library is prepared to `Add PAC drivers`_
+
 You must use CSD ``certificate`` and ``key`` in base64.
 
 .. code-block:: python
@@ -194,11 +207,27 @@ First you need to make a dictionary with invoice data with the following structu
 
     }
 
+Add PAC drivers
+---------------
+
+To add a new driver you only need to create a method in ``cfdi/pac.py`` file as the example.
+
+.. code-block:: python
+
+    @classmethod
+    def stamp_pac_name(cls, xml):
+        ''' 
+        You will receive the xml ready to stamp as a string
+        '''
+        Code to stamp...
+
+This method MUST be called ``stamp_pac`` + ``pac_name``.
+
+
 Known issues / Roadmap
 ----------------------
 
-* Sign the XML.
-* Generate drivers framework to allow different PAC's.
+* Hability to cancel invoices.
 * Hability to create Addendas.
 * Test & document everything.
 * Compatibility to CFDI v3.3.
