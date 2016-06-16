@@ -13,6 +13,7 @@ addons:
     apt:
         packages:
         - python-lxml
+        - swig
 
 install:
     - pip install . coveralls flake8

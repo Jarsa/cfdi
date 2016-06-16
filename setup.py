@@ -33,12 +33,15 @@ setup(
     install_requires=[
         'lxml',
         'Jinja2',
+        'M2Crypto',
         ],
     test_suite="cfdi.test",
     package_data={
         'cfdi': [
             'data/*.jinja',
             'data/*.xslt',
+            'test/*cer',
+            'test/*.key',
             ],
     },
 )

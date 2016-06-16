@@ -43,14 +43,29 @@ From remote source
 How to use it?
 --------------
 
-To generate XML you only need to call create method.
+You must use CSD ``certificate`` and ``key`` in base64.
+
+.. code-block:: python
+
+    # Example to convert file to base64
+    import base64
+
+    certificate = open('/path/to/certificate.cer', 'r')
+    cer = base64.b64encode(certificate.read())
+
+
+Assign CSD information and to generate XML then you call create method.
 
 .. code-block:: python
 
     import cfdi
-    invoice = cfdi.invoice.create(data)
 
-First you need to make a dictionary with invoice data like this:
+    cfdi.invoice.cer = cer  # cer in base64
+    cfdi.invoice.key = key  # key in base64
+    cfdi.invoice.pwd = pwd  # string with CSD password
+    invoice = cfdi.invoice.create(data)  # to get data variable see below.
+
+First you need to make a dictionary with invoice data with the following structure:
 
  .. code-block:: python
 
